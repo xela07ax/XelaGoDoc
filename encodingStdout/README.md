@@ -4,11 +4,16 @@
 
 1) Что бы Convert() не работал, передаем 0 или 47
 2) cp866 кодировка кирилицы, передаем 41
+## Использование
 
 ```go
+import (
+	"fmt"
+	"github.com/xela07ax/XelaGoDoc/encodingStdout"
+)
+
 func main() {
-    rand.Seed(time.Now().Unix())
-    fmt.Println(string(Convert(rand.Intn(47), []byte("golang学习"))))
+    fmt.Println(string(encodingStdout.Convert(41, []byte("golang �� �����"))))
 }
 ```
 ## Тестирование
