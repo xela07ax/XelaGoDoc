@@ -15,7 +15,16 @@ func main() {
 ```shell script
 go test
 ```
+```shell script
+--->cp866:"mvn" �� ����� ����७��� ��� ���譥�
+��������, �ᯮ��塞�� �ணࠬ��� ��� �������� 䠩���.
 
+--->newUtf:"mvn" не является внутренней или внешней
+командой, исполняемой программой или пакетным файлом.
+
+PASS
+ok      _/C_/Users/Tester/Projects/GitHub/XelaGoDoc/encodingStdout      0.017s
+```
 ## Использованные ресурсы
 https://studygolang.com/articles/18355
 
