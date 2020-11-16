@@ -7,6 +7,8 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/xela07ax/toolsXela/tp"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -131,6 +133,52 @@ func (c *Client) writePump() {
 			}
 		}
 	}
+}
+func readBodySimple(w http.ResponseWriter, r *http.Request) []byte {
+	fmt.Println("Пришла команда по HTTP 1.1")
+	b, err := ioutil.ReadAll(r.Body) // Считывание тело, ожидаем адрес сервера "localhost:5578"
+	if err != nil {
+		ertx := fmt.Sprintf("COM:Ошибка чтения тела: %s | ERTX:can't read body", err)
+		fmt.Println(ertx)
+		http.Error(w, ertx, http.StatusConflict) // 409
+		return []byte{}
+	}
+	return b
+}
+type Notify struct {
+	FuncName string
+	Text string
+	Status int
+	Show bool
+	UpdNum int
+}
+
+func resp (w http.ResponseWriter, r *http.Request, funcName string,text string, status int, show bool) {
+	Notify := Notify {
+		FuncName: funcName,
+		Text:     text,
+		Status:   status,
+		Show:     show,
+	}
+	if err := tp.Httpjson(w, r, Notify); err != nil {
+		log.Fatalf("Критическая ошибка, не удалось отправить сообщение в UI: %s| %v", err,Notify)
+	}
+
+}
+// serveWs handles websocket requests from the peer.
+func sendMsg(loger chan <- [4]string, w http.ResponseWriter, r *http.Request) {
+	Logx("-sendMsg->init")
+	msgRaw := readBodySimple(w,r)
+	if len(msgRaw) == 0 {
+		return
+	}
+	// Реализация Writer-а
+	fmt.Println("--W-process> начнем отправку")
+	loger <- [4]string{"sendMsg","nil",string(msgRaw)}
+	log.Printf("--W-true> отправили:%s\n", msgRaw)
+	// ---
+	ertx := "-sendMsg->true"
+	resp(w,r,"sendMsg", ertx, 0, true)
 }
 
 // serveWs handles websocket requests from the peer.

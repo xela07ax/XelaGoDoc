@@ -1,0 +1,2 @@
+2020-11-16 23:33:59 | FUNC:sendMsg | UNIT: nil | TEXT: Hello World
+2020-11-16 23:34:48 | FUNC:sendMsg | UNIT: nil | TEXT: Hello World

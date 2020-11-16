@@ -5,6 +5,7 @@
 package main
 
 import (
+	bcl "./broadcastLogger"
 	"flag"
 	"fmt"
 	"log"
@@ -28,14 +29,32 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println(addr)
 	flag.Parse()
 	Logx("-main->start[newHub]")
 	hub := newHub()
-	Logx("-main->end[newHub]")
-	Logx("-main->start[hub.run]")
 	go hub.run()
+	time.Sleep(1*time.Second)
+	logEr := bcl.NewChLoger(&bcl.Config{
+		IntervalMs:     300,
+		ConsolFilterFn: map[string]int{"Front Http Server":  0},
+		ConsolFilterUn: map[string]int{"Pooling": 1},
+		Mode:           0,
+		Dir:            "x-loger",
+		Broadcast: hub.Input,
+	})
+	logEr.RunMinion()
+	Logx("-main->end[newHub]")
+	Logx("-main->start[hub.run]-p2")
+	time.Sleep(1*time.Second)
+	logEr.ChInLog <- [4]string{"Welcome","nil",fmt.Sprintf("Вас приветствует \"Silika-FileManager Контроллер\" v1.1 (11112020) \n")}
+
 	Logx("-main->end[hub.run]")
+	// По вебсокетам у нас будет логер
 	http.HandleFunc("/", serveHome)
+	http.HandleFunc("/wsx/sendMsg", func(w http.ResponseWriter, r *http.Request) {
+		sendMsg(logEr.ChInLog, w, r)
+	})
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		serveWs(hub, w, r)
 	})
