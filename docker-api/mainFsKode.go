@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/xela07ax/XelaGoDoc/docker-api/fsKode"
+	"github.com/xela07ax/XelaGoDoc/docker-kod"
 	"flag"
 	"fmt"
 	"github.com/xela07ax/toolsXela/chLogger"
