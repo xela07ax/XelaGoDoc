@@ -1,4 +1,4 @@
-package fsKode
+package docker-kod
 
 import (
 	"context"

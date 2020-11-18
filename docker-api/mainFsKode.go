@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./fsKode"
+	"github.com/xela07ax/XelaGoDoc/docker-api/fsKode"
 	"flag"
 	"fmt"
 	"github.com/xela07ax/toolsXela/chLogger"
@@ -23,6 +23,7 @@ func main() {
 	logEr.RunMinion()
 	time.Sleep(1*time.Second)
 	logEr.ChInLog <- [4]string{"Welcome","nil",fmt.Sprintf("Вас приветствует \"%s Контроллер\" \n",addr)}
+
 	k := &fsKode.Kod{}
 	// Сделаем сначала управление по HTTP
 	http.HandleFunc("/kod/runContainer", k.RunContainer)
