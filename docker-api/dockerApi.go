@@ -1,15 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"bytes"
-	"strings"
+	"fmt"
 	"regexp"
+	"strings"
 
 	docker "github.com/fsouza/go-dockerclient"
 )
 
 func main() {
+
 	var endpoint string = "unix:///var/run/docker.sock"
 	var client *docker.Client
 	var err error
@@ -18,14 +19,24 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	// use client
 
-	listImages(client)
-	listContainers(client)
-	listServices(client)
+	//var endpoint string = "unix:///var/run/docker.sock"
+	//var client *docker.Client
+	//var err error
+
+	//client, err = docker.NewClient(endpoint)
+	//if err != nil {
+	//	panic(err)
+	//}
+
+	//listImages(client)
+	//listContainers(client)
+	//listServices(client)
 	listTasks(client)
-	listNodes(client)
-	getServiceLogs(client)
-	getContainerLogs(client)
+	//listNodes(client)
+	//getServiceLogs(client)
+	//getContainerLogs(client)
 }
 
 
