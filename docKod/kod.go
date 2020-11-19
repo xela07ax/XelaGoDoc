@@ -1,4 +1,4 @@
-package docker-kod
+package docKod
 
 import (
 	"context"
