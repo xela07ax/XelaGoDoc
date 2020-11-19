@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	dk "github.com/xela07ax/XelaGoDoc/docker-kod"
+	dk "github.com/xela07ax/XelaGoDoc/dockerApi/docKod"
 	"github.com/xela07ax/toolsXela/chLogger"
 	"log"
 	"net/http"
