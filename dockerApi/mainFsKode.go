@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	dk "github.com/xela07ax/XelaGoDoc/dockerApi/docKod"
 	"github.com/xela07ax/toolsXela/chLogger"
 	"log"
 	"net/http"
@@ -23,11 +22,10 @@ func main() {
 	logEr.RunMinion()
 	time.Sleep(1*time.Second)
 	logEr.ChInLog <- [4]string{"Welcome","nil",fmt.Sprintf("Вас приветствует \"%s Контроллер\" \n",addr)}
-
-	k := &dk.Kod{}
+	k := &Kod{}
 	// Сделаем сначала управление по HTTP
-	http.HandleFunc("/kod/runContainer", k.RunContainer)
 	http.HandleFunc("/kod/stopContainer", k.StopContainer)
+	http.HandleFunc("/kod/runContainer", k.RunContainer)
 	err := http.ListenAndServe(*addr, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
