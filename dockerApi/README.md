@@ -12,3 +12,7 @@ curl -X POST http://localhost:8180/kod/stopContainer -d "8dc5e1d574b42ad8fa466ad
 
 ## О xaljer/kodexplorer
 Запуск контейнера с командной строки
+
+```shell script
+docker container run -d -p 80:80 --mount source=./rw,destination=/usr/share/nginx/html nginx:alpine
+```
