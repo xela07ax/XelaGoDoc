@@ -1,18 +1,25 @@
-## Запуск Docker контейнера с Golang
+# Запуск Docker контейнера с Golang
+## Описание
+- Подключение локальной папки Volumes
+- Открытие портов, а так же прокидывание на хост машину
+- Управление контейнерами по id
+- Управление контейнерами REST запросами через curl
+- Демонстрация шикарного web файлового менеджера
 
 Для работы всех функций используется Go modules*  
 
-Rest api для запуска и остановки контейнеров. Это демонстративная версия, просто показыват "как можно сделать"
+Rest api для запуска и остановки контейнеров. Это демонстративная версия, просто показывает "как можно сделать"
 
-- Подключение дирктории  
-в данном примере подключается директория "rw"
-Данный каталог специально содержит уже некоторые файлы, дтя того, чтобы можно было их открыть с помощью разаернутого контейнера.
+## Руководство запуска и использования
+- Подключение директории  
+в данном примере подключается директория "kodResources"
+Данный каталог содержит используется для хранения профиля, и пользовательских данных.
 - Компиляция и запуск программы
 ```sh
 go get
 go run .
 ```
-- Запустим контейнер, а так-же прокинкм внутренние порты контейнера на ъост машину.
+- Запустим контейнер, а так-же прокинем внутренние порты контейнера на xост машину.
 ```shell script
 curl -X POST http://localhost:8180/kod/runContainer
 ```
@@ -39,16 +46,7 @@ sudo chmod -R 777 .
 ```shell script
 docker container run -d -p 8026:80 -v "/$(pwd)/rw:/var/www/html" xaljer/kodexplorer
 ```
-Нельзя отредактировать папку rw, так как не являюсь владельцем, исправим  
-```shell script
-sudo chmod -R 777 .
-```
+Сам репозитарий: https://github.com/kalcaddle/KodExplorer  
 
-Запустим контейнер с tmpfs
-```shell script
-curl -X POST http://localhost:8180/kod/runContainerTmpfs
-```
-C подключением разобрались
-
-Теги:
+## Теги:
 docker api golang volume, create missing-type-opt: missing required option: "type", golang docker volume, docker api golang, go bind docker api, golang docker api file system, golang docker api, docker api map ports go, docker api golang list container, go modules локальный пакет, golang go-dockerclient, golang connect to docker
