@@ -12,7 +12,7 @@ Rest api для запуска и остановки контейнеров. Э�
 go get
 go run .
 ```
-- Запустим контейнер
+- Запустим контейнер, а так-же прокинкм внутренние порты контейнера на ъост машину.
 ```shell script
 curl -X POST http://localhost:8180/kod/runContainer
 ```
@@ -50,3 +50,5 @@ curl -X POST http://localhost:8180/kod/runContainerTmpfs
 ```
 C подключением разобрались
 
+Теги:
+docker api golang volume, create missing-type-opt: missing required option: "type", golang docker volume, docker api golang, go bind docker api, golang docker api file system, golang docker api, docker api map ports go, docker api golang list container, go modules локальный пакет, golang go-dockerclient, golang connect to docker
