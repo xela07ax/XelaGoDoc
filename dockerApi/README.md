@@ -32,6 +32,8 @@ guest|guest
 cd kodResources/
 sudo chmod -R 777 .
 ```
+[![Demo docker api Xela golang](./dockerApiGolangXela.gif)](./dockerApiGolangXela.gif)
+
 ## Ручной запуск xaljer/kodexplorer
 Запуск контейнера с командной строки  
 ```shell script
