@@ -1,0 +1,44 @@
+  "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "39bb755ba5b8bec019c376040151fa88c17d73612ffc23e7ee6193cefc809655",
+                "Source": "/var/lib/docker/volumes/39bb755ba5b8bec019c376040151fa88c17d73612ffc23e7ee6193cefc809655/_data",
+                "Destination": "/home/droid/Projects/GitHub/XelaGoDoc/dockerApi/rw:/var/www/html",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+
+
+   "Cmd": [
+                "php",
+                "-S",
+                "0000:80",
+                "-t",
+                "/var/www/html"
+            ],
+            "Image": "xaljer/kodexplorer",
+            "Volumes": {
+                "/home/droid/Projects/GitHub/XelaGoDoc/dockerApi/rw:/var/www/html": {}
+            },
+            "WorkingDir": "/var/www/html",
+            "Entrypoint": [
+                "entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "maintainer": "xaljer@outlook.com"
+            }
+-=-----------------------------------------
+  "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/droid/Projects/GitHub/XelaGoDoc/dockerApi/rw",
+                "Destination": "/var/www/html",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],

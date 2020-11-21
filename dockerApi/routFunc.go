@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/api/types/mount"
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/nat"
 	"github.com/xela07ax/toolsXela/tp"
 	"io"
+	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
 type Kod struct {
@@ -46,11 +49,18 @@ func (k *Kod)RunContainer(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	reader, err := cli.ImagePull(ctx, "docker.io/library/alpine", types.ImagePullOptions{})
+	reader, err := cli.ImagePull(ctx, "xaljer/kodexplorer", types.ImagePullOptions{})
 	if err != nil {
 		panic(err)
 	}
 	io.Copy(os.Stdout, reader)
+	path, err := os.Getwd()
+	if err != nil {
+		log.Println(err)
+	}
+	dir := filepath.Join(path,"kodResources")
+	fmt.Println(dir)
+
 	hostConfig := &container.HostConfig{
 		PortBindings: nat.PortMap{
 			"80/tcp": []nat.PortBinding{
@@ -60,15 +70,18 @@ func (k *Kod)RunContainer(w http.ResponseWriter, r *http.Request) {
 				},
 			},
 		},
+		Mounts: []mount.Mount{
+			{
+				Type:   mount.TypeBind,
+				Source: dir,
+				Target: "/var/www/html",
+			},
+		},
 	}
-
 	resp, err :=
 		cli.ContainerCreate(ctx, &container.Config{
 			Image:  "xaljer/kodexplorer",
 			Tty:     false,
-			Volumes: map[string]struct{}{
-				"/home/droid/Projects/GitHub/XelaGoDoc/dockerAi/chloger:/var/www/html": {},
-			},
 			ExposedPorts: nat.PortSet{
 				"80/tcp": struct{}{},
 			},

@@ -21,7 +21,7 @@ func main() {
 	})
 	logEr.RunMinion()
 	time.Sleep(1*time.Second)
-	logEr.ChInLog <- [4]string{"Welcome","nil",fmt.Sprintf("Вас приветствует \"%s Контроллер\" \n",addr)}
+	logEr.ChInLog <- [4]string{"Welcome","nil",fmt.Sprintf("Вас приветствует \"%s\"\n",*addr)}
 	k := &Kod{}
 	// Сделаем сначала управление по HTTP
 	http.HandleFunc("/kod/stopContainer", k.StopContainer)
