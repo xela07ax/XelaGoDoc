@@ -24,5 +24,4 @@ ___tstBack.go___ - Клиент приложение, представим, чт
 ```
 
 ### Демонстрация
-`
 [![Demo ws front-back Xela golang](./_res/ws-front-back-go-example.gif)](./_res/ws-front-back-go-example.gif)
