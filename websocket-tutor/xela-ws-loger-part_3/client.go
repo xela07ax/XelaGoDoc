@@ -7,7 +7,7 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/xela07ax/toolsXela/tp"
+	"github.com/xela07ax/toolsXela/ttp"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -160,7 +160,7 @@ func resp (w http.ResponseWriter, r *http.Request, funcName string,text string, 
 		Status:   status,
 		Show:     show,
 	}
-	if err := tp.Httpjson(w, r, Notify); err != nil {
+	if err := ttp.Httpjson(w, r, Notify); err != nil {
 		log.Fatalf("Критическая ошибка, не удалось отправить сообщение в UI: %s| %v", err,Notify)
 	}
 
