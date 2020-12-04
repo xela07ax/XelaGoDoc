@@ -1,0 +1,8 @@
+{
+  "ListActiveInterfaces": false,
+  "VpnName": "HomeSSTP",
+  "User": "youruservpn",
+  "Password": "pass",
+  "TimeSleepSecond": 120,
+  "Debug": true
+}
